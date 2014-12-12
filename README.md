@@ -31,6 +31,7 @@ server.js
 
 index.html
 ----------
+```html
     <!doctype html>
     <title>/</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,7 +75,7 @@ index.html
             p.scrollIntoView();
         }
     </script>
-
+```
 License
 -------
 
