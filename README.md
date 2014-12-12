@@ -31,49 +31,49 @@ server.js
 
 index.html
 ----------
-<!doctype html>
-<title>/</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-    * {
-        font: 18px monospace;
-    }
-</style>
-<input autofocus style="width:75%">
-<script src="/socket.io/socket.io.js"></script>
-<script>
-    var socket = io()
-        .on('connect', function() {
-            document.title = location.pathname;
-            socket.emit('join', location.pathname);
-        })
-        .on('announce', log)
-        .on('inject', inject)
-        .on('message', function(data) {
-            log(data.u + ': ' + data.m);
-        })
+    <!doctype html>
+    <title>/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            font: 18px monospace;
+        }
+    </style>
+    <input autofocus style="width:75%">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io()
+            .on('connect', function() {
+                document.title = location.pathname;
+                socket.emit('join', location.pathname);
+            })
+           .on('announce', log)
+            .on('inject', inject)
+            .on('message', function(data) {
+                log(data.u + ': ' + data.m);
+            })
 
-    var input = document.getElementsByTagName('input')[0];
-    input.onchange = function() {
-        socket.send(this.value);
-        this.value = '';
-    };
+        var input = document.getElementsByTagName('input')[0];
+        input.onchange = function() {
+            socket.send(this.value);
+            this.value = '';
+        };
 
-    function inject(html) {
-        var div = document.createElement('div');
-        div.innerHTML = html;
-        div.title = Date();
-        document.body.insertBefore(div, input);
-        div.scrollIntoView();
-    }
-    function log(m) {
-        var p = document.createElement('p');
-        p.appendChild(document.createTextNode(m));
-        p.title = Date();
-        document.body.insertBefore(p, input);
-        p.scrollIntoView();
-    }
-</script>
+        function inject(html) {
+            var div = document.createElement('div');
+            div.innerHTML = html;
+            div.title = Date();
+            document.body.insertBefore(div, input);
+            div.scrollIntoView();
+        }
+        function log(m) {
+            var p = document.createElement('p');
+            p.appendChild(document.createTextNode(m));
+            p.title = Date();
+            document.body.insertBefore(p, input);
+            p.scrollIntoView();
+        }
+    </script>
 
 License
 -------
