@@ -48,7 +48,7 @@ index.html
                 document.title = location.pathname;
                 socket.emit('join', location.pathname);
             })
-           .on('announce', log)
+            .on('announce', log)
             .on('inject', inject)
             .on('message', function(data) {
                 log(data.u + ': ' + data.m);
